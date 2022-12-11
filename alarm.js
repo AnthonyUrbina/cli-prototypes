@@ -12,17 +12,16 @@ callback is
 const { exec } = require('child_process');
 
 function alarm(time) {
-  // console.log(time);
-  // const alarmTime = new Date(time);
-  // const timeUntilAlarm = alarmTime.getTime() - Date.now();
-  // console.log(timeUntilAlarm);
-  // setTimeout(,timeUntilAlarm)
-
-  exec('aplay Glass.wav', (error, stdout, stderr) => {
-    if (error) {
-      console.error(error);
-    }
-  });
+  const alarmTime = new Date(time);
+  const timeUntilAlarm = alarmTime.getTime() - Date.now();
+  setTimeout(() => {
+    exec('afplay Glass.wav', (error, stdout, stderr) => {
+      if (error) {
+        console.error(error);
+      }
+    });
+    console.log('WAKE UP');
+  }, timeUntilAlarm);
 }
 const alarmTime = process.argv[2];
 
