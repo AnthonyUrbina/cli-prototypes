@@ -9,12 +9,21 @@ setTimeout, difference as delay
 callback is
 */
 
-function alarm() {
-  const time = process.argv[2];
-  console.log(time);
-  const now = new Date();
-  const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-  console.log(utc);
-}
+const { exec } = require('child_process');
 
-alarm();
+function alarm(time) {
+  // console.log(time);
+  // const alarmTime = new Date(time);
+  // const timeUntilAlarm = alarmTime.getTime() - Date.now();
+  // console.log(timeUntilAlarm);
+  // setTimeout(,timeUntilAlarm)
+
+  exec('aplay Glass.wav', (error, stdout, stderr) => {
+    if (error) {
+      console.error(error);
+    }
+  });
+}
+const alarmTime = process.argv[2];
+
+alarm(alarmTime);
