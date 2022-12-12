@@ -14,10 +14,11 @@ const { exec } = require('child_process');
 function alarm(time) {
   const alarmTime = new Date(time);
   const timeUntilAlarm = alarmTime.getTime() - Date.now();
+
   setTimeout(() => {
-    exec('afplay Glass.wav', (error, stdout, stderr) => {
-      if (error) {
-        console.error(error);
+    exec('afplay alarm-sound.mp3', (err, stdout, stderr) => {
+      if (err) {
+        console.error(err);
       }
     });
     console.log('WAKE UP');
